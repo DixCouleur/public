@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>无限获取联通流量</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <script>
+    function getll() {
+      document.getElementById("i").style.display = "block";
+      document.getElementById("i").src = "http://ac3.10010.cn/tencentWallet/ActivityTencent/rediredtLogic.htm?mobile=" + document.getElementById("phonenumber").value;
+    }
+  </script>
+  <style>
+    div {
+      width: 800px;
+      height: 600px;
+      margin: 40px auto;
+    }
+
+    div>* {
+      display: block;
+      text-align: center;
+    }
+
+    #i {
+      display: none;
+    }
+
+    h5,
+    div>* {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h5 class="text-muted" align="center">如您的手机号之前从未领取过，下方输入手机号点击领取，然后在状态框里点击 “已阅读，立即领取”</h5>
+  <div>
+    <iframe id="i" width="800px" height="600px" allowtransparency="true" frameborder="0" scrolling="no" src=""></iframe>
+    <label>手机号：</label>
+    <input class="form-control input-lg" id="phonenumber" type="text">
+    <input class="btn btn-success btn-lg btn-block" type="button" value="点击获取" onClick="getll()">
+    <a href="http://ac3.10010.cn/tencentWallet/ActivityTencent/receiveRed.htm">点击此链接获取</a>
+  </div>
+</body>
+
+</html>
