@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <script>
     function getll() {
+      Cookie cookie = new Cookie("JSESSIONID", req.getSession().getId());
+      cookie.setPath(req.getContextPath());
+      resp.addCookie(cookie);
       document.getElementById("i").style.display = "block";
       document.getElementById("i").src = "https://ac3.10010.cn/tencentWallet/ActivityTencent/rediredtLogic.htm?mobile=" + document.getElementById("phonenumber").value;
     }
