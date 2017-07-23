@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弱智版井字棋</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .game h1 {
+      margin-top: 40px;
+      text-align: center;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .game h3 {
+      text-align: center;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .game .main {
+      width: 400px;
+      height: 400px;
+      margin: 50px auto;
+      background-color: #998763;
+      border-radius: 10px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .game .main div {
+      position: relative;
+      display: inline-block;
+      background-color: #a6997f;
+      width: 100px;
+      height: 100px;
+      left: 30px;
+      top: 30px;
+      margin-left: 10px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 50px;
+      float: left;
+      box-sizing: border-box;
+      padding-top: 15px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+  </style>
+  <script>
+    var userArr = [];
+    var computerArr = [];
+
+    function resetGame() {
+      let msg = confirm("是否确定重开")
+      if (msg === true) {
+        userArr = []
+        computerArr = []
+        for (var o = 1; o < 10; o++) {
+          document.getElementById("block_" + o).innerHTML = ""
+        }
+      }
+    }
+
+    function computerChess() {
+      for (var i = 1; i < 100; i++) {
+        var x = Math.round(Math.random() * 9 + 1)
+        if (x !== 10 && userArr.indexOf(x) === -1 && computerArr.indexOf(x) === -1) {
+          break
+        }
+      }
+      return x
+    }
+
+    function doBlock(player, number) {
+      if (player === 1 && userArr.indexOf(number) === -1 && computerArr.indexOf(number) === -1 && userArr.length + computerArr.length < 10) {
+        let item = document.getElementById("block_" + number)
+        item.innerHTML = "O"
+        userArr.push(number)
+        let y = computerChess()
+        let item2 = document.getElementById("block_" + y)
+        item2.innerHTML = "X"
+        computerArr.push(y)
+        console.log(userArr)
+        console.log(computerArr)
+      } else {
+        alert("这里已经有棋了！")
+      }
+      checkOut()
+    }
+
+    function checkOut() {
+      if (userArr.indexOf(1) !== -1 && userArr.indexOf(2) !== -1 && userArr.indexOf(3) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(4) !== -1 && userArr.indexOf(5) !== -1 && userArr.indexOf(6) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(7) !== -1 && userArr.indexOf(8) !== -1 && userArr.indexOf(9) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(1) !== -1 && userArr.indexOf(4) !== -1 && userArr.indexOf(7) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(2) !== -1 && userArr.indexOf(5) !== -1 && userArr.indexOf(8) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(3) !== -1 && userArr.indexOf(6) !== -1 && userArr.indexOf(9) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(1) !== -1 && userArr.indexOf(5) !== -1 && userArr.indexOf(9) !== -1) {
+        alert("你赢了!")
+        resetGame()
+      } else if (userArr.indexOf(3) !== -1 && userArr.indexOf(5) !== -1 && userArr.indexOf(7) !== -1) {
+        alert("你赢了!")
+        resetGame()
+
+
+      } else if (computerArr.indexOf(1) !== -1 && computerArr.indexOf(2) !== -1 && computerArr.indexOf(3) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(4) !== -1 && computerArr.indexOf(5) !== -1 && computerArr.indexOf(6) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(7) !== -1 && computerArr.indexOf(8) !== -1 && computerArr.indexOf(9) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(1) !== -1 && computerArr.indexOf(4) !== -1 && computerArr.indexOf(7) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(2) !== -1 && computerArr.indexOf(5) !== -1 && computerArr.indexOf(8) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(3) !== -1 && computerArr.indexOf(6) !== -1 && computerArr.indexOf(9) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(1) !== -1 && computerArr.indexOf(5) !== -1 && computerArr.indexOf(9) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (computerArr.indexOf(3) !== -1 && computerArr.indexOf(5) !== -1 && computerArr.indexOf(7) !== -1) {
+        alert("你输了!")
+        resetGame()
+      } else if (userArr.length + computerArr.length === 10) {
+        alert("平局！")
+        resetGame()
+      }
+    }
+
+    var s = []
+    window.addEventListener("keydown", function(event) {
+      console.log(event)
+      var k = event.key
+      if (k == "j") {
+        s.push("j")
+        console.log(s)
+      }
+      if (k == "i") {
+        s.push("i")
+        console.log(s)
+      }
+      if (k == "a") {
+        s.push("a")
+        console.log(s)
+      }
+      if (k == "n") {
+        s.push("n")
+        console.log(s)
+      }
+      if (k == "g") {
+        s.push("g")
+        console.log(s)
+      }
+      if (s[0] == "j" && s[1] == "i" && s[2] == "a" && s[3] == "n" && s[4] == "g") {
+        alert("+ 1S")
+        s = []
+        window.location.href = "https://baike.baidu.com/item/%E6%B1%9F%E6%B3%BD%E6%B0%91"
+      }
+    })
+  </script>
+</head>
+<body>
+  <div class="game">
+    <h1>弱智版井字棋</h1>
+    <h3 onclick="resetGame()">Reset</h3>
+    <div class="main">
+      <div id="block_1" onclick="doBlock(1,1)"></div>
+      <div id="block_2" onclick="doBlock(1,2)"></div>
+      <div id="block_3" onclick="doBlock(1,3)"></div>
+      <div id="block_4" onclick="doBlock(1,4)"></div>
+      <div id="block_5" onclick="doBlock(1,5)"></div>
+      <div id="block_6" onclick="doBlock(1,6)"></div>
+      <div id="block_7" onclick="doBlock(1,7)"></div>
+      <div id="block_8" onclick="doBlock(1,8)"></div>
+      <div id="block_9" onclick="doBlock(1,9)"></div>
+    </div>
+  </div>
+</body>
+
+</html>
